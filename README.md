@@ -1,6 +1,6 @@
 # File Renamer - Sequential File Naming Tool (AI TEST)
 
-AI TESA web-based file renaming application that allows you to select a folder and rename all files sequentially based on either file size or creation date. Built with modern web technologies and runs entirely in your browser.\
+AI TEST | web-based file renaming application that allows you to select a folder and rename all files sequentially based on either file size or creation date. Built with modern web technologies and runs entirely in your browser.\
 
 https://kitsui-mizukawa.github.io/file-renamer-html/
 ## Features
