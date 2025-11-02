@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Renamer - Sequential File Naming</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="app-container">
+        <header class="app-header">
+            <h1>File Renamer</h1>
+            <p class="app-description">Rename files sequentially by size or creation date</p>
+        </header>
+
+        <div id="browser-compatibility-warning" class="browser-warning hidden">
+            <h2>Browser Not Supported</h2>
+            <p>Your browser doesn't support the File System Access API required for this application.</p>
+            <p>Please use Chrome, Edge, or Safari 16.4+ for full functionality.</p>
+        </div>
+
+        <section class="wizard-container">
+            <!-- Step 1: Folder Selection -->
+            <div class="step" id="step-1">
+                <h2>Step 1: Select Folder</h2>
+                <p>Choose a folder containing files you want to rename sequentially.</p>
+                <button id="select-folder-btn" class="btn-primary">Choose Folder</button>
+                <div id="folder-info" class="folder-display hidden">
+                    <div class="folder-path"></div>
+                    <div class="file-count"></div>
+                </div>
+                <div id="folder-error" class="error-message hidden"></div>
+            </div>
+
+            <!-- Step 2: Configuration -->
+            <div class="step hidden" id="step-2">
+                <h2>Step 2: Configure Renaming</h2>
+                <div class="config-grid">
+                    <div class="config-group">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select">
+                            <option value="size-asc">Size (smallest to largest)</option>
+                            <option value="size-desc">Size (largest to smallest)</option>
+                            <option value="date-asc">Creation Date (oldest first)</option>
+                            <option value="date-desc">Creation Date (newest first)</option>
+                        </select>
+                    </div>
+                    <div class="config-group">
+                        <label for="pattern-input">File Pattern:</label>
+                        <input type="text" id="pattern-input" value="file_{number}" placeholder="e.g., photo_{number}">
+                        <small>Use {number} for sequential numbering</small>
+                        <div id="pattern-error" class="error-message hidden"></div>
+                    </div>
+                    <div class="config-group">
+                        <label for="padding-select">Number Padding:</label>
+                        <select id="padding-select">
+                            <option value="0">No padding</option>
+                            <option value="2">2 digits (01, 02...)</option>
+                            <option value="3" selected>3 digits (001, 002...)</option>
+                            <option value="4">4 digits (0001, 0002...)</option>
+                            <option value="5">5 digits (00001, 00002...)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Preview -->
+            <div class="step hidden" id="step-3">
+                <h2>Step 3: Preview Changes</h2>
+                <div class="preview-controls">
+                    <button id="refresh-preview-btn" class="btn-secondary">Refresh Preview</button>
+                    <span id="file-count-display"></span>
+                </div>
+                <div class="preview-table-container">
+                    <table id="preview-table" class="preview-table">
+                        <thead>
+                            <tr>
+                                <th>Original Name</th>
+                                <th>New Name</th>
+                                <th>Size</th>
+                                <th>Created Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="preview-tbody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="validation-errors" class="error-list hidden"></div>
+                <div id="collision-warnings" class="warning-list hidden"></div>
+            </div>
+
+            <!-- Step 4: Execution -->
+            <div class="step hidden" id="step-4">
+                <h2>Step 4: Execute Renaming</h2>
+                <div class="execution-summary">
+                    <p>Ready to rename <strong id="files-to-rename-count">0</strong> files.</p>
+                </div>
+                <div class="execution-warning">
+                    <p><strong>Warning:</strong> This operation cannot be undone. Make sure you've reviewed the preview.</p>
+                </div>
+                <button id="execute-rename-btn" class="btn-danger">Rename All Files</button>
+                <div id="progress-container" class="progress-container hidden">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <div id="progress-text" class="progress-text"></div>
+                </div>
+                <div id="operation-result" class="operation-result hidden"></div>
+            </div>
+        </section>
+
+        <nav class="wizard-navigation">
+            <button id="prev-btn" class="btn-secondary" disabled>Previous</button>
+            <button id="next-btn" class="btn-primary" disabled>Next</button>
+        </nav>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/fileSystem.js"></script>
+    <script src="js/sorter.js"></script>
+    <script src="js/renamer.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

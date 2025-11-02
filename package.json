@@ -1,0 +1,21 @@
+{
+  "name": "file-renamer-html",
+  "version": "1.0.0",
+  "description": "A web-based file renaming application that allows users to rename files sequentially based on size or creation date",
+  "main": "index.html",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "file-renamer",
+    "batch-rename",
+    "sequential-naming",
+    "file-system",
+    "web-app"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
